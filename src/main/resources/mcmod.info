@@ -1,0 +1,9 @@
+[{
+  "modid": "colored_water",
+  "name": "ColoredWater",
+  "description": "Water that's colored",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "authorList": ["BillyGalbreath"],
+  "logoFile": "assets/logo.png"
+}]
