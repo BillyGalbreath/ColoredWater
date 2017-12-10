@@ -1,5 +1,6 @@
 package net.pl3x.colored_water.fluid;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -64,5 +65,18 @@ public class BlockWater extends BlockFluidClassic {
             return Math.min(1 - BlockLiquid.getLiquidHeightPercent(here.getValue(BlockLiquid.LEVEL)), 1);
         }
         return !here.getMaterial().isSolid() && up.getBlock() == this ? 1 : getQuantaPercentage(world, pos);
+    }
+
+    @Override
+    public int getQuantaValue(IBlockAccess world, BlockPos pos) {
+        IBlockState state = world.getBlockState(pos);
+        Block block = state.getBlock();
+        if (block == Blocks.AIR) {
+            return 0;
+        }
+        if (!(block instanceof BlockWater || block == Blocks.WATER || block == Blocks.FLOWING_WATER)) {
+            return -1;
+        }
+        return quantaPerBlock - state.getValue(LEVEL);
     }
 }
