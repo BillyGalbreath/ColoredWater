@@ -57,12 +57,12 @@ public class BlockWater extends BlockFluidClassic {
                 return 1;
             }
             if (getMetaFromState(here) == getMaxRenderHeightMeta()) {
-                return 0.875F;
+                return 0.8875F;
             }
         }
         if (here.getBlock() instanceof BlockLiquid || here.getBlock() instanceof IFluidBlock) {
-            return Math.min(1 - BlockLiquid.getLiquidHeightPercent(here.getValue(BlockLiquid.LEVEL)), 14f / 16);
+            return Math.min(1 - BlockLiquid.getLiquidHeightPercent(here.getValue(BlockLiquid.LEVEL)), 1);
         }
-        return !here.getMaterial().isSolid() && up.getBlock() == this ? 1 : getQuantaPercentage(world, pos) * 0.875F;
+        return !here.getMaterial().isSolid() && up.getBlock() == this ? 1 : getQuantaPercentage(world, pos);
     }
 }
