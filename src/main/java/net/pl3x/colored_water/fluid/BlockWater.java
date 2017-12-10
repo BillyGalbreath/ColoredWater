@@ -4,6 +4,7 @@ import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.statemap.StateMap;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -23,6 +24,9 @@ public class BlockWater extends BlockFluidClassic {
         setHardness(100.0F);
         setLightOpacity(3);
         disableStats();
+
+        displacements.put(Blocks.WATER, false);
+        displacements.put(Blocks.FLOWING_WATER, false);
 
         setRegistryName("water_" + color.getName());
         setUnlocalizedName(getRegistryName().toString());
