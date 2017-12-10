@@ -74,7 +74,7 @@ public class BlockWater extends BlockFluidClassic {
         if (block == Blocks.AIR) {
             return 0;
         }
-        if (!(block instanceof BlockWater || block == Blocks.WATER || block == Blocks.FLOWING_WATER)) {
+        if (!(block instanceof BlockWater || block == Blocks.WATER)) {
             return -1;
         }
         return quantaPerBlock - state.getValue(LEVEL);
