@@ -15,7 +15,7 @@ public class FluidWater extends Fluid {
                 new ResourceLocation(ColoredWater.modId, "fluids/water_flow_" + color.getName()));
 
         this.dyeColor = color;
-        setLuminosity(0);
+        setLuminosity(0); // lighting seems to be glitchy
 
         FluidRegistry.registerFluid(this);
         FluidRegistry.addBucketForFluid(this);
