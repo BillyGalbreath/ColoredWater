@@ -27,6 +27,8 @@ public class BlockWater extends BlockFluidClassic {
 
         displacements.put(Blocks.WATER, false);
         displacements.put(Blocks.FLOWING_WATER, false);
+        displacements.put(Blocks.LAVA, false);
+        displacements.put(Blocks.FLOWING_LAVA, false);
 
         setRegistryName("water_" + color.getName());
         setUnlocalizedName(getRegistryName().toString());
