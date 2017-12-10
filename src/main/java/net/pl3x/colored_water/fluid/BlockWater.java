@@ -20,6 +20,10 @@ import javax.annotation.Nonnull;
 public class BlockWater extends BlockFluidClassic {
     public BlockWater(EnumDyeColor color, Fluid fluid) {
         super(fluid, Material.WATER);
+        setHardness(100.0F);
+        setLightOpacity(3);
+        disableStats();
+
         setRegistryName("water_" + color.getName());
         setUnlocalizedName(getRegistryName().toString());
 
