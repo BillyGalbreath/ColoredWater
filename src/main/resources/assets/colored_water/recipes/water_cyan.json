@@ -10,6 +10,10 @@
     }
   ],
   "result": {
-    "item": "colored_water:water_cyan"
+    "item": "forge:bucketfilled",
+    "nbt": {
+      "Amount": 1000,
+      "FluidName": "water_cyan"
+    }
   }
 }
