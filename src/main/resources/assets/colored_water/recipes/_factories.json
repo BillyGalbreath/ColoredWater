@@ -1,0 +1,5 @@
+{
+  "recipes": {
+    "dyed_water": "net.pl3x.colored_water.recipe.RecipeFactory"
+  }
+}
