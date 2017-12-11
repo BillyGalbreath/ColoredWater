@@ -11,7 +11,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fluids.BlockFluidClassic;
-import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.IFluidBlock;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
@@ -20,18 +19,22 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nonnull;
 
 public class BlockWater extends BlockFluidClassic {
-    public BlockWater(EnumDyeColor color, Fluid fluid) {
+    public final EnumDyeColor dyeColor;
+
+    public BlockWater(FluidWater fluid) {
         super(fluid, Material.WATER);
         setHardness(100.0F);
         setLightOpacity(3);
         disableStats();
+
+        this.dyeColor = fluid.dyeColor;
 
         displacements.put(Blocks.WATER, false);
         displacements.put(Blocks.FLOWING_WATER, false);
         displacements.put(Blocks.LAVA, false);
         displacements.put(Blocks.FLOWING_LAVA, false);
 
-        setRegistryName("water_" + color.getName());
+        setRegistryName("water_" + fluid.dyeColor.getName());
         setUnlocalizedName(getRegistryName().toString());
 
         ForgeRegistries.BLOCKS.register(this);

@@ -7,7 +7,7 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.pl3x.colored_water.ColoredWater;
 
 public class FluidWater extends Fluid {
-    private EnumDyeColor dyeColor;
+    public final EnumDyeColor dyeColor;
 
     public FluidWater(EnumDyeColor color) {
         super("water_" + color.getName(),
@@ -19,9 +19,5 @@ public class FluidWater extends Fluid {
 
         FluidRegistry.registerFluid(this);
         FluidRegistry.addBucketForFluid(this);
-    }
-
-    public EnumDyeColor getDyeColor() {
-        return dyeColor;
     }
 }
