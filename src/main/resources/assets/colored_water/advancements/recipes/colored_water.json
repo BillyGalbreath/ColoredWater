@@ -1,0 +1,47 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "colored_water:water_black",
+      "colored_water:water_blue",
+      "colored_water:water_brown",
+      "colored_water:water_cyan",
+      "colored_water:water_gray",
+      "colored_water:water_green",
+      "colored_water:water_light_blue",
+      "colored_water:water_lime",
+      "colored_water:water_magenta",
+      "colored_water:water_orange",
+      "colored_water:water_pink",
+      "colored_water:water_purple",
+      "colored_water:water_red",
+      "colored_water:water_silver",
+      "colored_water:water_white",
+      "colored_water:water_yellow"
+    ]
+  },
+  "criteria": {
+    "has_water_bucket": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:water_bucket"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "colored_water:water_black"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_water_bucket",
+      "has_the_recipe"
+    ]
+  ]
+}
