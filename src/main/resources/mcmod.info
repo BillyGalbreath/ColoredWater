@@ -1,7 +1,7 @@
 [{
   "modid": "colored_water",
   "name": "ColoredWater",
-  "description": "Water that's colored",
+  "description": "Water, but colored. Oh my!",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "authorList": ["BillyGalbreath"],
