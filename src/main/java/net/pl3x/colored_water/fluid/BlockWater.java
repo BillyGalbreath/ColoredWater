@@ -9,14 +9,18 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.IFluidBlock;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.pl3x.colored_water.ColoredWater;
+import net.pl3x.colored_water.particle.WaterDrip;
 
 import javax.annotation.Nonnull;
+import java.util.Random;
 
 public class BlockWater extends BlockFluidClassic {
     public final EnumDyeColor dyeColor;
@@ -81,5 +85,22 @@ public class BlockWater extends BlockFluidClassic {
             return -1;
         }
         return quantaPerBlock - state.getValue(LEVEL);
+    }
+
+    @SideOnly(Side.CLIENT)
+    public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand) {
+        double x = (double) pos.getX();
+        double y = (double) pos.getY();
+        double z = (double) pos.getZ();
+
+        if (rand.nextInt(10) == 0 && world.getBlockState(pos.down()).isTopSolid()) {
+            Material material = world.getBlockState(pos.down(2)).getMaterial();
+            if (!material.blocksMovement() && !material.isLiquid()) {
+                x += (double) rand.nextFloat();
+                y -= 1.05D;
+                z += (double) rand.nextFloat();
+                ColoredWater.proxy.drawParticle(new WaterDrip(world, x, y, z, dyeColor));
+            }
+        }
     }
 }
