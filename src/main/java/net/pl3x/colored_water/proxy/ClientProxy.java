@@ -35,14 +35,19 @@ public class ClientProxy extends ServerProxy {
             return;
         }
         if (event.getBlockForOverlay().getBlock() != Blocks.WATER) {
+            System.out.println("1 " + event.getBlockForOverlay().getBlock());
             return;
         }
-        Block block = event.getPlayer().world.getBlockState(event.getBlockPos()).getBlock();
-        if (!(block instanceof BlockWater)) {
-            return;
+        Block blockFeet = event.getPlayer().world.getBlockState(event.getBlockPos()).getBlock();
+        Block blockHead = event.getPlayer().world.getBlockState(event.getBlockPos().up()).getBlock();
+        if (!(blockFeet instanceof BlockWater) && !(blockHead instanceof BlockWater)) {
+            return; // not in water
         }
         event.setCanceled(true);
-        Water.renderWaterOverlayTexture(((BlockWater) block).dyeColor);
+        if (blockHead instanceof BlockWater) {
+            Water.renderWaterOverlayTexture(((BlockWater) blockHead).dyeColor);
+        }
+        Water.renderWaterOverlayTexture(null);
     }
 
     public void drawParticle(Particle particle) {

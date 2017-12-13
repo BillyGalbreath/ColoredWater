@@ -47,7 +47,7 @@ public class Water extends MaterialLiquid {
     @SideOnly(Side.CLIENT)
     public static void renderWaterOverlayTexture(EnumDyeColor color) {
         Minecraft mc = Minecraft.getMinecraft();
-        ResourceLocation texture = RES_UNDERWATER_OVERLAY.get(color);
+        ResourceLocation texture = color == null ? RES_UNDERWATER_OVERLAY_DEFAULT : RES_UNDERWATER_OVERLAY.get(color);
         if (texture == null) {
             texture = RES_UNDERWATER_OVERLAY_DEFAULT;
         }
