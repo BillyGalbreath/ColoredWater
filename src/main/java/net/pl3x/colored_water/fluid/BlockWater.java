@@ -6,7 +6,9 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumDyeColor;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -92,6 +94,16 @@ public class BlockWater extends BlockFluidClassic {
         double x = (double) pos.getX();
         double y = (double) pos.getY();
         double z = (double) pos.getZ();
+
+        int level = state.getValue(LEVEL);
+        if (level > 0 && level < 8) {
+            if (rand.nextInt(64) == 0) {
+                world.playSound(x + 0.5D, y + 0.5D, z + 0.5D, SoundEvents.BLOCK_WATER_AMBIENT, SoundCategory.BLOCKS, rand.nextFloat() * 0.25F + 0.75F, rand.nextFloat() + 0.5F, false);
+            }
+        }/* else if (rand.nextInt(10) == 0) {
+            // TODO: fix blue particles
+            world.spawnParticle(EnumParticleTypes.SUSPENDED, d0 + (double) rand.nextFloat(), d1 + (double) rand.nextFloat(), d2 + (double) rand.nextFloat(), 0.0D, 0.0D, 0.0D);
+        }*/
 
         if (rand.nextInt(10) == 0 && world.getBlockState(pos.down()).isTopSolid()) {
             Material material = world.getBlockState(pos.down(2)).getMaterial();
