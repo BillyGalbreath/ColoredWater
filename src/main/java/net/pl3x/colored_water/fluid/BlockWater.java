@@ -5,11 +5,13 @@ import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.statemap.StateMap;
+import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
@@ -87,6 +89,23 @@ public class BlockWater extends BlockFluidClassic {
             return -1;
         }
         return quantaPerBlock - state.getValue(LEVEL);
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public Vec3d getFogColor(World world, BlockPos pos, IBlockState state, Entity entity, Vec3d originalColor, float partialTicks) {
+        if (getFluid() != null) {
+            float f12 = 0.0F;
+            if (entity instanceof net.minecraft.entity.EntityLivingBase) {
+                net.minecraft.entity.EntityLivingBase ent = (net.minecraft.entity.EntityLivingBase) entity;
+                f12 = (float) net.minecraft.enchantment.EnchantmentHelper.getRespirationModifier(ent) * 0.2F;
+                if (ent.isPotionActive(net.minecraft.init.MobEffects.WATER_BREATHING)) {
+                    f12 = f12 * 0.3F + 0.6F;
+                }
+            }
+            return new Vec3d(0.02F + f12, 0.02F + f12, 0.2F + f12);
+        }
+        return super.getFogColor(world, pos, state, entity, originalColor, partialTicks);
     }
 
     @SideOnly(Side.CLIENT)

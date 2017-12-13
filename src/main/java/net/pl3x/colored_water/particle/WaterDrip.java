@@ -15,11 +15,13 @@ public class WaterDrip extends Particle {
 
     public WaterDrip(World world, double x, double y, double z, EnumDyeColor color) {
         super(world, x, y, z, 0.0D, 0.0D, 0.0D);
-        int i = color.getColorValue();
-        particleRed = (float)((i & 0xFF0000) >> 16) / 255.0F;
-        particleGreen = (float)((i & 0xFF00) >> 8) / 255.0F;
-        particleBlue = (float)(i & 0xFF) / 255.0F;
 
+        int i = color.getColorValue();
+        particleRed = (i >> 16 & 0xFF) / 255.0F;
+        particleGreen = (i >> 8 & 0xFF) / 255.0F;
+        particleBlue = (i & 0xFF) / 255.0F;
+
+        // darken the drops a little bit
         particleRed -= particleRed * 0.1;
         particleGreen -= particleGreen * 0.1;
         particleBlue -= particleBlue * 0.1;

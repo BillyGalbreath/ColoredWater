@@ -35,7 +35,6 @@ public class ClientProxy extends ServerProxy {
             return;
         }
         if (event.getBlockForOverlay().getBlock() != Blocks.WATER) {
-            System.out.println("1 " + event.getBlockForOverlay().getBlock());
             return;
         }
         Block blockFeet = event.getPlayer().world.getBlockState(event.getBlockPos()).getBlock();

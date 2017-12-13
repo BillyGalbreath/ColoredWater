@@ -55,7 +55,7 @@ public class Water extends MaterialLiquid {
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder bufferbuilder = tessellator.getBuffer();
         float f = mc.player.getBrightness();
-        GlStateManager.color(f, f, f, 0.5F);
+        GlStateManager.color(f, f, f, 0.25F);
         GlStateManager.enableBlend();
         GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA,
                 GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA,
