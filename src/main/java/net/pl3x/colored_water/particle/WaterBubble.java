@@ -28,18 +28,19 @@ public class WaterBubble extends ParticleBubble {
     public WaterBubble(World world, double x, double y, double z, double speedX, double speedY, double speedZ) {
         super(world, x, y, z, speedX, speedY, speedZ);
 
+        particleRed = 1.0F;
+        particleGreen = 1.0F;
+        particleBlue = 1.0F;
+
         IBlockState state = world.getBlockState(new BlockPos(x, y, z).down());
         Block block = state.getBlock();
         if (block instanceof BlockWater) {
             fxLayer = 1;
             EnumDyeColor color = ((BlockWater) block).dyeColor;
             particleTextureIndexX = color.getMetadata() % 4;
-            particleTextureIndexY = color.getMetadata() / 4;
+            particleTextureIndexY = 8 + color.getMetadata() / 4;
         } else {
             fxLayer = 0;
-            particleRed = 1.0F;
-            particleGreen = 1.0F;
-            particleBlue = 1.0F;
             setParticleTextureIndex(32);
             setSize(0.02F, 0.02F);
         }
@@ -61,7 +62,7 @@ public class WaterBubble extends ParticleBubble {
     @Override
     public void renderParticle(BufferBuilder buffer, Entity entity, float partialTicks, float x, float z, float yz, float xy, float xz) {
         if (fxLayer != 0) {
-            Minecraft.getMinecraft().getTextureManager().bindTexture(BUBBLES);
+            Minecraft.getMinecraft().getTextureManager().bindTexture(ModParticles.PARTICLES_TEXTURE);
         }
         super.renderParticle(buffer, entity, partialTicks, x, z, yz, xy, xz);
     }
