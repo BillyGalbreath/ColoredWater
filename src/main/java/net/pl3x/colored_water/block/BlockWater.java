@@ -1,4 +1,4 @@
-package net.pl3x.colored_water.fluid;
+package net.pl3x.colored_water.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
@@ -21,7 +21,9 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pl3x.colored_water.ColoredWater;
+import net.pl3x.colored_water.fluid.FluidWater;
 import net.pl3x.colored_water.particle.WaterDrip;
+import net.pl3x.colored_water.particle.WaterSuspend;
 
 import javax.annotation.Nonnull;
 import java.util.Random;
@@ -119,10 +121,9 @@ public class BlockWater extends BlockFluidClassic {
             if (rand.nextInt(64) == 0) {
                 world.playSound(x + 0.5D, y + 0.5D, z + 0.5D, SoundEvents.BLOCK_WATER_AMBIENT, SoundCategory.BLOCKS, rand.nextFloat() * 0.25F + 0.75F, rand.nextFloat() + 0.5F, false);
             }
-        }/* else if (rand.nextInt(10) == 0) {
-            // TODO: fix blue particles
-            world.spawnParticle(EnumParticleTypes.SUSPENDED, d0 + (double) rand.nextFloat(), d1 + (double) rand.nextFloat(), d2 + (double) rand.nextFloat(), 0.0D, 0.0D, 0.0D);
-        }*/
+        } else if (rand.nextInt(10) == 0) {
+            ColoredWater.proxy.drawParticle(new WaterSuspend(world, x + rand.nextFloat(), y + rand.nextFloat(), z + rand.nextFloat(), dyeColor));
+        }
 
         if (rand.nextInt(10) == 0 && world.getBlockState(pos.down()).isTopSolid()) {
             Material material = world.getBlockState(pos.down(2)).getMaterial();

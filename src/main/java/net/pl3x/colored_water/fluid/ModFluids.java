@@ -1,6 +1,7 @@
 package net.pl3x.colored_water.fluid;
 
 import net.minecraft.item.EnumDyeColor;
+import net.pl3x.colored_water.block.BlockWater;
 
 import java.util.HashSet;
 import java.util.Set;

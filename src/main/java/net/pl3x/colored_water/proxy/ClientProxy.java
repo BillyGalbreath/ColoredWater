@@ -11,9 +11,9 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.pl3x.colored_water.fluid.BlockWater;
+import net.pl3x.colored_water.block.BlockWater;
 import net.pl3x.colored_water.fluid.ModFluids;
-import net.pl3x.colored_water.fluid.Water;
+import net.pl3x.colored_water.material.Water;
 
 @SideOnly(Side.CLIENT)
 public class ClientProxy extends ServerProxy {

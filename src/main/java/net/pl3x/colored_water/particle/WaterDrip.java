@@ -10,16 +10,17 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
+
 public class WaterDrip extends Particle {
     private int bobTimer;
 
-    public WaterDrip(World world, double x, double y, double z, EnumDyeColor color) {
-        super(world, x, y, z, 0.0D, 0.0D, 0.0D);
+    public WaterDrip(World world, double x, double y, double z, @Nonnull EnumDyeColor color) {
+        super(world, x, y, z, 0, 0, 0);
 
-        int i = color.getColorValue();
-        particleRed = (i >> 16 & 0xFF) / 255.0F;
-        particleGreen = (i >> 8 & 0xFF) / 255.0F;
-        particleBlue = (i & 0xFF) / 255.0F;
+        particleRed = color.getColorComponentValues()[0];
+        particleGreen = color.getColorComponentValues()[1];
+        particleBlue = color.getColorComponentValues()[2];
 
         // darken the drops a little bit
         particleRed -= particleRed * 0.1;

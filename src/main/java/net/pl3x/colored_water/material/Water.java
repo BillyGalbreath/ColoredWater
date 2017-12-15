@@ -1,4 +1,4 @@
-package net.pl3x.colored_water.fluid;
+package net.pl3x.colored_water.material;
 
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.MaterialLiquid;
