@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraftforge.client.event.RenderBlockOverlayEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -14,6 +15,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pl3x.colored_water.block.BlockWater;
 import net.pl3x.colored_water.fluid.ModFluids;
 import net.pl3x.colored_water.material.Water;
+import net.pl3x.colored_water.particle.WaterBubble;
 
 @SideOnly(Side.CLIENT)
 public class ClientProxy extends ServerProxy {
@@ -27,6 +29,7 @@ public class ClientProxy extends ServerProxy {
     public void init(FMLInitializationEvent event) {
         super.init(event);
         MinecraftForge.EVENT_BUS.register(this);
+        Minecraft.getMinecraft().effectRenderer.registerParticle(EnumParticleTypes.WATER_BUBBLE.getParticleID(), new WaterBubble.Factory());
     }
 
     @SubscribeEvent
