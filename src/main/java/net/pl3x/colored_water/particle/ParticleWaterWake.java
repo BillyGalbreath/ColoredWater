@@ -11,7 +11,7 @@ import javax.annotation.Nonnull;
 @SideOnly(Side.CLIENT)
 public class ParticleWaterWake extends ColoredParticle {
     public ParticleWaterWake(World world, double x, double y, double z, double speedX, double speedY, double speedZ) {
-        super(world, x, y, z, 0, 0, 0);
+        super(world, x, y, z, 0, 0, 0, null, true);
 
         motionX *= 0.30000001192092896D;
         motionY = Math.random() * 0.20000000298023224D + 0.10000000149011612D;

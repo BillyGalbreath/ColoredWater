@@ -5,6 +5,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.particle.IParticleFactory;
 import net.minecraft.client.particle.Particle;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -16,7 +17,11 @@ import javax.annotation.Nonnull;
 
 public class ParticleRain extends ColoredParticle {
     public ParticleRain(World world, double x, double y, double z) {
-        super(world, x, y, z, 0, 0, 0);
+        this(world, x, y, z, null, false);
+    }
+
+    public ParticleRain(World world, double x, double y, double z, EnumDyeColor dyeColor, boolean fixY) {
+        super(world, x, y, z, 0, 0, 0, dyeColor, fixY);
         motionX *= 0.30000001192092896D;
         motionY = Math.random() * 0.20000000298023224D + 0.10000000149011612D;
         motionZ *= 0.30000001192092896D;

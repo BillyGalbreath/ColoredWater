@@ -20,8 +20,8 @@ import net.minecraftforge.fluids.IFluidBlock;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.pl3x.colored_water.ColoredWater;
 import net.pl3x.colored_water.fluid.FluidWater;
+import net.pl3x.colored_water.particle.ModParticles;
 import net.pl3x.colored_water.particle.ParticleDrip;
 import net.pl3x.colored_water.particle.ParticleSuspend;
 
@@ -122,7 +122,7 @@ public class BlockWater extends BlockFluidClassic {
                 world.playSound(x + 0.5D, y + 0.5D, z + 0.5D, SoundEvents.BLOCK_WATER_AMBIENT, SoundCategory.BLOCKS, rand.nextFloat() * 0.25F + 0.75F, rand.nextFloat() + 0.5F, false);
             }
         } else if (rand.nextInt(10) == 0) {
-            ColoredWater.proxy.drawParticle(new ParticleSuspend(world, x + rand.nextFloat(), y + rand.nextFloat(), z + rand.nextFloat(), dyeColor));
+            ModParticles.spawn(new ParticleSuspend(world, x + rand.nextFloat(), y + rand.nextFloat(), z + rand.nextFloat(), dyeColor));
         }
 
         if (rand.nextInt(10) == 0 && world.getBlockState(pos.down()).isTopSolid()) {
@@ -131,7 +131,7 @@ public class BlockWater extends BlockFluidClassic {
                 x += (double) rand.nextFloat();
                 y -= 1.05D;
                 z += (double) rand.nextFloat();
-                ColoredWater.proxy.drawParticle(new ParticleDrip(world, x, y, z, dyeColor));
+                ModParticles.spawn(new ParticleDrip(world, x, y, z, dyeColor));
             }
         }
     }

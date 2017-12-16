@@ -4,7 +4,6 @@ import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.EnumDyeColor;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -16,7 +15,7 @@ public class ParticleDrip extends ColoredParticle {
     private int bobTimer;
 
     public ParticleDrip(World world, double x, double y, double z, @Nonnull EnumDyeColor color) {
-        super(world, x, y, z, 0, 0, 0, color);
+        super(world, x, y, z, 0, 0, 0, color, true);
 
         particleRed = color.getColorComponentValues()[0];
         particleGreen = color.getColorComponentValues()[1];
@@ -76,7 +75,7 @@ public class ParticleDrip extends ColoredParticle {
 
         if (onGround) {
             setExpired();
-            world.spawnParticle(EnumParticleTypes.WATER_SPLASH, posX, posY, posZ, 0.0D, 0.0D, 0.0D);
+            ModParticles.spawn(new ParticleSplash(world, posX, posY, posZ, 0, 0, 0, true, color));
             motionX *= 0.699999988079071D;
             motionZ *= 0.699999988079071D;
         }

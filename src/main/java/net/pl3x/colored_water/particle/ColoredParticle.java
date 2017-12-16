@@ -15,18 +15,17 @@ import net.pl3x.colored_water.block.BlockWater;
 public abstract class ColoredParticle extends Particle {
     public final EnumDyeColor color;
 
-    public ColoredParticle(World world, double x, double y, double z, double speedX, double speedY, double speedZ, EnumDyeColor dyeColor) {
+    public ColoredParticle(World world, double x, double y, double z, double speedX, double speedY, double speedZ, EnumDyeColor dyeColor, boolean fixY) {
         super(world, x, y, z, speedX, speedY, speedZ);
-        color = dyeColor;
-    }
-
-    public ColoredParticle(World world, double x, double y, double z, double speedX, double speedY, double speedZ) {
-        super(world, x, y, z, speedX, speedY, speedZ);
-        Block block = getBlock();
-        if (block instanceof BlockWater) {
-            color = ((BlockWater) block).dyeColor;
+        if (dyeColor == null) {
+            Block block = getBlock(fixY);
+            if (block instanceof BlockWater) {
+                color = ((BlockWater) block).dyeColor;
+            } else {
+                color = null;
+            }
         } else {
-            color = null;
+            color = dyeColor;
         }
     }
 
@@ -45,14 +44,16 @@ public abstract class ColoredParticle extends Particle {
         return new BlockPos(posX, posY, posZ);
     }
 
-    public Block getBlock() {
+    public Block getBlock(boolean fixY) {
         BlockPos pos = getPos();
         IBlockState state = world.getBlockState(pos);
         if (state.getMaterial() != Material.WATER) {
             state = world.getBlockState(pos.down());
             if (state.getMaterial() != Material.WATER) {
-                setPosition(posX, posY - 1, posZ);
-                prevPosY = posY;
+                if (fixY) {
+                    setPosition(posX, posY - 1, posZ);
+                    prevPosY = posY;
+                }
                 state = world.getBlockState(pos.down().down());
             }
         }

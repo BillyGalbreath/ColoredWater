@@ -17,4 +17,8 @@ public class ModParticles {
         Minecraft.getMinecraft().effectRenderer.registerParticle(EnumParticleTypes.WATER_DROP.getParticleID(), new ParticleRain.Factory());
         Minecraft.getMinecraft().effectRenderer.registerParticle(EnumParticleTypes.WATER_WAKE.getParticleID(), new ParticleWaterWake.Factory());
     }
+
+    public static void spawn(ColoredParticle particle) {
+        ColoredWater.proxy.drawParticle(particle);
+    }
 }

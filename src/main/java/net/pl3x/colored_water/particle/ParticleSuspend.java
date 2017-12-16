@@ -7,7 +7,7 @@ import net.minecraft.world.World;
 
 public class ParticleSuspend extends ColoredParticle {
     public ParticleSuspend(World world, double x, double y, double z, EnumDyeColor color) {
-        super(world, x, y - 0.125D, z, 0, 0, 0);
+        super(world, x, y - 0.125D, z, 0, 0, 0, null, true);
 
         particleRed = color.getColorComponentValues()[0];
         particleGreen = color.getColorComponentValues()[1];

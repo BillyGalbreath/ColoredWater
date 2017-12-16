@@ -12,7 +12,7 @@ import javax.annotation.Nonnull;
 @SideOnly(Side.CLIENT)
 public class ParticleBubble extends ColoredParticle {
     public ParticleBubble(World world, double x, double y, double z, double speedX, double speedY, double speedZ) {
-        super(world, x, y, z, speedX, speedY, speedZ);
+        super(world, x, y, z, speedX, speedY, speedZ, null, true);
 
         particleRed = 1.0F;
         particleGreen = 1.0F;
