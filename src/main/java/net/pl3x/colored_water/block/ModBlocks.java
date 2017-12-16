@@ -1,21 +1,21 @@
 package net.pl3x.colored_water.block;
 
-import net.minecraft.item.EnumDyeColor;
+import net.pl3x.colored_water.fluid.FluidWater;
 import net.pl3x.colored_water.fluid.ModFluids;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ModBlocks {
-    public static final Map<EnumDyeColor, BlockWater> __BLOCKS__ = new HashMap<>();
+    public static final Set<BlockWater> __BLOCKS__ = new HashSet<>();
 
     public static void registerBlocks() {
-        for (EnumDyeColor color : EnumDyeColor.values()) {
-            __BLOCKS__.put(color, new BlockWater(ModFluids.__FLUIDS__.get(color)));
+        for (FluidWater fluid : ModFluids.__FLUIDS__) {
+            __BLOCKS__.add(new BlockWater(fluid));
         }
     }
 
     public static void renderBlocks() {
-        __BLOCKS__.forEach((color, block) -> block.render());
+        __BLOCKS__.forEach(BlockWater::render);
     }
 }

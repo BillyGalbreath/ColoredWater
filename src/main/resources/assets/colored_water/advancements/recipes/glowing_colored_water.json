@@ -1,0 +1,73 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "colored_water:glowing_water_black",
+      "colored_water:glowing_water_blue",
+      "colored_water:glowing_water_brown",
+      "colored_water:glowing_water_cyan",
+      "colored_water:glowing_water_gray",
+      "colored_water:glowing_water_green",
+      "colored_water:glowing_water_light_blue",
+      "colored_water:glowing_water_lime",
+      "colored_water:glowing_water_magenta",
+      "colored_water:glowing_water_orange",
+      "colored_water:glowing_water_pink",
+      "colored_water:glowing_water_purple",
+      "colored_water:glowing_water_red",
+      "colored_water:glowing_water_silver",
+      "colored_water:glowing_water_white",
+      "colored_water:glowing_water_yellow"
+    ]
+  },
+  "criteria": {
+    "has_water_bucket": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:water_bucket"
+          }
+        ]
+      }
+    },
+    "has_glowstone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:glowstone"
+          }
+        ]
+      }
+    },
+    "has_glowstone_dust": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:glowstone_dust"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "colored_water:glowing_water_black"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_water_bucket",
+      "has_glowstone",
+      "has_the_recipe"
+    ],
+    [
+      "has_water_bucket",
+      "has_glowstone_dust",
+      "has_the_recipe"
+    ]
+  ]
+}

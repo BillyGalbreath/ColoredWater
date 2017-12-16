@@ -1,0 +1,22 @@
+{
+  "type": "colored_water:dyed_water",
+  "ingredients": [
+    {
+      "item": "minecraft:water_bucket"
+    },
+    {
+      "item": "minecraft:dye",
+      "data": 5
+    },
+    {
+      "item": "minecraft:glowstone_dust"
+    }
+  ],
+  "result": {
+    "item": "forge:bucketfilled",
+    "nbt": {
+      "Amount": 1000,
+      "FluidName": "glowing_water_purple"
+    }
+  }
+}

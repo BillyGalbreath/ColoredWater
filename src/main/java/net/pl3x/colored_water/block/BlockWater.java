@@ -34,7 +34,8 @@ public class BlockWater extends BlockFluidClassic {
     public BlockWater(FluidWater fluid) {
         super(fluid, Material.WATER);
         setHardness(100.0F);
-        setLightOpacity(3);
+        setLightOpacity(fluid.getLuminosity() > 0 ? 0 : 3);
+        setLightLevel(fluid.getLuminosity());
         disableStats();
 
         this.dyeColor = fluid.dyeColor;
@@ -44,7 +45,7 @@ public class BlockWater extends BlockFluidClassic {
         displacements.put(Blocks.LAVA, false);
         displacements.put(Blocks.FLOWING_LAVA, false);
 
-        setRegistryName("water_" + fluid.dyeColor.getName());
+        setRegistryName(fluidName);
         setUnlocalizedName(getRegistryName().toString());
 
         ForgeRegistries.BLOCKS.register(this);
