@@ -12,9 +12,9 @@ public class ModParticles {
     public static final ResourceLocation PARTICLES_TEXTURE = new ResourceLocation(ColoredWater.modId, "textures/particles/particles.png");
 
     public static void init() {
-        Minecraft.getMinecraft().effectRenderer.registerParticle(EnumParticleTypes.WATER_BUBBLE.getParticleID(), new WaterBubble.Factory());
-        Minecraft.getMinecraft().effectRenderer.registerParticle(EnumParticleTypes.WATER_SPLASH.getParticleID(), new Splash.Factory());
-        Minecraft.getMinecraft().effectRenderer.registerParticle(EnumParticleTypes.WATER_DROP.getParticleID(), new Rain.Factory());
-        Minecraft.getMinecraft().effectRenderer.registerParticle(EnumParticleTypes.WATER_WAKE.getParticleID(), new WaterWake.Factory());
+        Minecraft.getMinecraft().effectRenderer.registerParticle(EnumParticleTypes.WATER_BUBBLE.getParticleID(), new ParticleBubble.Factory());
+        Minecraft.getMinecraft().effectRenderer.registerParticle(EnumParticleTypes.WATER_SPLASH.getParticleID(), new ParticleSplash.Factory());
+        Minecraft.getMinecraft().effectRenderer.registerParticle(EnumParticleTypes.WATER_DROP.getParticleID(), new ParticleRain.Factory());
+        Minecraft.getMinecraft().effectRenderer.registerParticle(EnumParticleTypes.WATER_WAKE.getParticleID(), new ParticleWaterWake.Factory());
     }
 }

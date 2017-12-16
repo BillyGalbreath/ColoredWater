@@ -1,22 +1,18 @@
 package net.pl3x.colored_water.particle;
 
-import net.minecraft.block.BlockLiquid;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.particle.IParticleFactory;
 import net.minecraft.client.particle.Particle;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import net.minecraftforge.fluids.IFluidBlock;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
 
-public class Rain extends WaterParticle {
-    public Rain(World world, double x, double y, double z) {
+@SideOnly(Side.CLIENT)
+public class ParticleWaterWake extends ColoredParticle {
+    public ParticleWaterWake(World world, double x, double y, double z, double speedX, double speedY, double speedZ) {
         super(world, x, y, z, 0, 0, 0);
+
         motionX *= 0.30000001192092896D;
         motionY = Math.random() * 0.20000000298023224D + 0.10000000149011612D;
         motionZ *= 0.30000001192092896D;
@@ -26,16 +22,20 @@ public class Rain extends WaterParticle {
         particleBlue = 1.0F;
 
         if (color != null) {
-            particleTextureIndexX = (color.getMetadata() % 2 * 4) + rand.nextInt(4);
+            particleTextureIndexX = color.getMetadata() % 2 * 4;
             particleTextureIndexY = color.getMetadata() / 2;
         } else {
-            particleTextureIndexX = 4 + rand.nextInt(4);
+            particleTextureIndexX = 4;
             particleTextureIndexY = 9;
         }
 
+        motionX = speedX;
+        motionY = speedY;
+        motionZ = speedZ;
+
         setSize(0.01F, 0.01F);
-        particleGravity = 0.06F;
         particleMaxAge = (int) (8.0D / (Math.random() * 0.8D + 0.2D));
+        particleGravity = 0.0F;
     }
 
     public void onUpdate() {
@@ -47,41 +47,25 @@ public class Rain extends WaterParticle {
         motionX *= 0.9800000190734863D;
         motionY *= 0.9800000190734863D;
         motionZ *= 0.9800000190734863D;
+        int i = 60 - particleMaxAge;
+        float f = (float) i * 0.001F;
+        setSize(f, f);
+
+        if (color != null) {
+            particleTextureIndexX = (color.getMetadata() % 2 * 4) + i % 4;
+        } else {
+            particleTextureIndexX = 4 + i % 4;
+        }
 
         if (particleMaxAge-- <= 0) {
             setExpired();
-        }
-
-        if (onGround) {
-            if (Math.random() < 0.5D) {
-                setExpired();
-            }
-
-            motionX *= 0.699999988079071D;
-            motionZ *= 0.699999988079071D;
-        }
-
-        BlockPos pos = getPos();
-        IBlockState state = world.getBlockState(pos);
-        Material material = state.getMaterial();
-
-        if (material.isLiquid() || material.isSolid()) {
-            double y;
-            if (state.getBlock() instanceof BlockLiquid || state.getBlock() instanceof IFluidBlock) {
-                y = (double) (1.0F - BlockLiquid.getLiquidHeightPercent(state.getValue(BlockLiquid.LEVEL)));
-            } else {
-                y = state.getBoundingBox(world, pos).maxY;
-            }
-            if (posY < (double) MathHelper.floor(posY) + y) {
-                setExpired();
-            }
         }
     }
 
     @SideOnly(Side.CLIENT)
     public static class Factory implements IParticleFactory {
         public Particle createParticle(int particleID, @Nonnull World world, double x, double y, double z, double speedX, double speedY, double speedZ, @Nonnull int... params) {
-            return new Rain(world, x, y, z);
+            return new ParticleWaterWake(world, x, y, z, speedX, speedY, speedZ);
         }
     }
 }

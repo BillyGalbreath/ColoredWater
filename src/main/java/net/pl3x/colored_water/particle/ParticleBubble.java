@@ -10,8 +10,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nonnull;
 
 @SideOnly(Side.CLIENT)
-public class WaterBubble extends WaterParticle {
-    public WaterBubble(World world, double x, double y, double z, double speedX, double speedY, double speedZ) {
+public class ParticleBubble extends ColoredParticle {
+    public ParticleBubble(World world, double x, double y, double z, double speedX, double speedY, double speedZ) {
         super(world, x, y, z, speedX, speedY, speedZ);
 
         particleRed = 1.0F;
@@ -57,7 +57,7 @@ public class WaterBubble extends WaterParticle {
     @SideOnly(Side.CLIENT)
     public static class Factory implements IParticleFactory {
         public Particle createParticle(int particleID, @Nonnull World world, double x, double y, double z, double speedX, double speedY, double speedZ, @Nonnull int... params) {
-            return new WaterBubble(world, x, y, z, speedX, speedY, speedZ);
+            return new ParticleBubble(world, x, y, z, speedX, speedY, speedZ);
         }
     }
 }

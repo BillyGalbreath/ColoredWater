@@ -13,7 +13,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pl3x.colored_water.block.BlockWater;
 import net.pl3x.colored_water.fluid.ModFluids;
-import net.pl3x.colored_water.material.Water;
 import net.pl3x.colored_water.particle.ModParticles;
 
 @SideOnly(Side.CLIENT)
@@ -46,9 +45,9 @@ public class ClientProxy extends ServerProxy {
         }
         event.setCanceled(true);
         if (blockHead instanceof BlockWater) {
-            Water.renderWaterOverlayTexture(((BlockWater) blockHead).dyeColor);
+            ModFluids.renderWaterOverlayTexture(((BlockWater) blockHead).dyeColor);
         }
-        Water.renderWaterOverlayTexture(null);
+        ModFluids.renderWaterOverlayTexture(null);
     }
 
     public void drawParticle(Particle particle) {

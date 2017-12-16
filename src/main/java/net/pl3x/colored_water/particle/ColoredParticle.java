@@ -12,15 +12,15 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.pl3x.colored_water.block.BlockWater;
 
-public abstract class WaterParticle extends Particle {
+public abstract class ColoredParticle extends Particle {
     public final EnumDyeColor color;
 
-    public WaterParticle(World world, double x, double y, double z, double speedX, double speedY, double speedZ, EnumDyeColor dyeColor) {
+    public ColoredParticle(World world, double x, double y, double z, double speedX, double speedY, double speedZ, EnumDyeColor dyeColor) {
         super(world, x, y, z, speedX, speedY, speedZ);
         color = dyeColor;
     }
 
-    public WaterParticle(World world, double x, double y, double z, double speedX, double speedY, double speedZ) {
+    public ColoredParticle(World world, double x, double y, double z, double speedX, double speedY, double speedZ) {
         super(world, x, y, z, speedX, speedY, speedZ);
         Block block = getBlock();
         if (block instanceof BlockWater) {

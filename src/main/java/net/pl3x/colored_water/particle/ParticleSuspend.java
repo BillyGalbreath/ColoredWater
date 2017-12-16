@@ -5,8 +5,8 @@ import net.minecraft.item.EnumDyeColor;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class WaterSuspend extends WaterParticle {
-    public WaterSuspend(World world, double x, double y, double z, EnumDyeColor color) {
+public class ParticleSuspend extends ColoredParticle {
+    public ParticleSuspend(World world, double x, double y, double z, EnumDyeColor color) {
         super(world, x, y - 0.125D, z, 0, 0, 0);
 
         particleRed = color.getColorComponentValues()[0];

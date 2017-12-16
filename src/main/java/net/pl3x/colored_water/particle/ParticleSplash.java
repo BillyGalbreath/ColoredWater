@@ -8,8 +8,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
 
-public class Splash extends Rain {
-    public Splash(World world, double x, double y, double z, double speedX, double speedY, double speedZ) {
+public class ParticleSplash extends ParticleRain {
+    public ParticleSplash(World world, double x, double y, double z, double speedX, double speedY, double speedZ) {
         super(world, x, y, z);
         particleGravity = 0.04F;
 
@@ -23,7 +23,7 @@ public class Splash extends Rain {
     @SideOnly(Side.CLIENT)
     public static class Factory implements IParticleFactory {
         public Particle createParticle(int particleID, @Nonnull World world, double x, double y, double z, double speedX, double speedY, double speedZ, @Nonnull int... params) {
-            return new Splash(world, x, y, z, speedX, speedY, speedZ);
+            return new ParticleSplash(world, x, y, z, speedX, speedY, speedZ);
         }
     }
 }

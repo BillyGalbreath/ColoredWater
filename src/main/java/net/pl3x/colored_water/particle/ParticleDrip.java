@@ -12,10 +12,10 @@ import net.minecraftforge.fluids.IFluidBlock;
 
 import javax.annotation.Nonnull;
 
-public class WaterDrip extends WaterParticle {
+public class ParticleDrip extends ColoredParticle {
     private int bobTimer;
 
-    public WaterDrip(World world, double x, double y, double z, @Nonnull EnumDyeColor color) {
+    public ParticleDrip(World world, double x, double y, double z, @Nonnull EnumDyeColor color) {
         super(world, x, y, z, 0, 0, 0, color);
 
         particleRed = color.getColorComponentValues()[0];
