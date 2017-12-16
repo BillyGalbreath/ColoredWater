@@ -12,6 +12,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pl3x.colored_water.block.BlockWater;
+import net.pl3x.colored_water.block.ModBlocks;
 import net.pl3x.colored_water.fluid.ModFluids;
 import net.pl3x.colored_water.particle.ModParticles;
 
@@ -20,7 +21,7 @@ public class ClientProxy extends ServerProxy {
     @Override
     public void preInit(FMLPreInitializationEvent event) {
         super.preInit(event);
-        ModFluids.renderBlocks();
+        ModBlocks.renderBlocks();
     }
 
     @Override

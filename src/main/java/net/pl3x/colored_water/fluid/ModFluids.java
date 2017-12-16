@@ -10,12 +10,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.pl3x.colored_water.ColoredWater;
-import net.pl3x.colored_water.block.BlockWater;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 public class ModFluids {
     public static final Map<EnumDyeColor, ResourceLocation> COLORED_UNDERWATER_OVERLAY = new HashMap<>();
@@ -40,21 +37,12 @@ public class ModFluids {
         COLORED_UNDERWATER_OVERLAY.put(EnumDyeColor.YELLOW, new ResourceLocation(ColoredWater.modId, "textures/misc/underwater_yellow.png"));
     }
 
-    public static final Set<BlockWater> __BLOCKS__ = new HashSet<>();
-    public static final Set<FluidWater> __FLUIDS__ = new HashSet<>();
+    public static final Map<EnumDyeColor, FluidWater> __FLUIDS__ = new HashMap<>();
 
     public static void registerFluids() {
         for (EnumDyeColor color : EnumDyeColor.values()) {
-            FluidWater fluid = new FluidWater(color);
-            BlockWater block = new BlockWater(fluid);
-
-            __FLUIDS__.add(fluid);
-            __BLOCKS__.add(block);
+            __FLUIDS__.put(color, new FluidWater(color));
         }
-    }
-
-    public static void renderBlocks() {
-        __BLOCKS__.forEach(BlockWater::render);
     }
 
     @SideOnly(Side.CLIENT)
