@@ -3,20 +3,20 @@ package net.pl3x.colored_water.particle;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.particle.Particle;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.IFluidBlock;
 
 import javax.annotation.Nonnull;
 
-public class WaterDrip extends Particle {
+public class WaterDrip extends WaterParticle {
     private int bobTimer;
 
     public WaterDrip(World world, double x, double y, double z, @Nonnull EnumDyeColor color) {
-        super(world, x, y, z, 0, 0, 0);
+        super(world, x, y, z, 0, 0, 0, color);
 
         particleRed = color.getColorComponentValues()[0];
         particleGreen = color.getColorComponentValues()[1];
@@ -27,19 +27,17 @@ public class WaterDrip extends Particle {
         particleGreen -= particleGreen * 0.1;
         particleBlue -= particleBlue * 0.1;
 
+        particleTextureIndexX = 7;
+        particleTextureIndexY = 8;
+
         motionX = 0.0D;
         motionY = 0.0D;
         motionZ = 0.0D;
 
-        setParticleTextureIndex(113);
         setSize(0.01F, 0.01F);
-
         particleGravity = 0.06F;
         bobTimer = 40;
         particleMaxAge = (int) (64.0D / (Math.random() * 0.8D + 0.2D));
-        motionX = 0.0D;
-        motionY = 0.0D;
-        motionZ = 0.0D;
     }
 
     @Override
@@ -60,9 +58,11 @@ public class WaterDrip extends Particle {
             motionX *= 0.02D;
             motionY *= 0.02D;
             motionZ *= 0.02D;
-            setParticleTextureIndex(113);
+            particleTextureIndexX = 7;
+            particleTextureIndexY = 8;
         } else {
-            setParticleTextureIndex(112);
+            particleTextureIndexX = 6;
+            particleTextureIndexY = 8;
         }
 
         move(motionX, motionY, motionZ);
@@ -81,14 +81,14 @@ public class WaterDrip extends Particle {
             motionZ *= 0.699999988079071D;
         }
 
-        BlockPos blockpos = new BlockPos(posX, posY, posZ);
-        IBlockState iblockstate = world.getBlockState(blockpos);
-        Material material = iblockstate.getMaterial();
+        BlockPos blockpos = getPos();
+        IBlockState state = world.getBlockState(blockpos);
+        Material material = state.getMaterial();
 
         if (material.isLiquid() || material.isSolid()) {
             double d0 = 0.0D;
-            if (iblockstate.getBlock() instanceof BlockLiquid) {
-                d0 = (double) BlockLiquid.getLiquidHeightPercent(iblockstate.getValue(BlockLiquid.LEVEL));
+            if (state.getBlock() instanceof BlockLiquid || state.getBlock() instanceof IFluidBlock) {
+                d0 = (double) BlockLiquid.getLiquidHeightPercent(state.getValue(BlockLiquid.LEVEL));
             }
             double d1 = (double) (MathHelper.floor(posY) + 1) - d0;
             if (posY < d1) {

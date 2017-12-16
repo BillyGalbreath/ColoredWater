@@ -1,12 +1,11 @@
 package net.pl3x.colored_water.particle;
 
 import net.minecraft.block.material.Material;
-import net.minecraft.client.particle.Particle;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class WaterSuspend extends Particle {
+public class WaterSuspend extends WaterParticle {
     public WaterSuspend(World world, double x, double y, double z, EnumDyeColor color) {
         super(world, x, y - 0.125D, z, 0, 0, 0);
 
@@ -19,14 +18,15 @@ public class WaterSuspend extends Particle {
         particleGreen -= particleGreen * 0.3;
         particleBlue -= particleBlue * 0.3;
 
-        setParticleTextureIndex(0);
-        setSize(0.01F, 0.01F);
-        particleScale *= rand.nextFloat() * 0.6F + 0.2F;
+        particleTextureIndexX = 5;
+        particleTextureIndexY = 8;
 
         motionX = 0;
         motionY = 0;
         motionZ = 0;
 
+        setSize(0.01F, 0.01F);
+        particleScale *= rand.nextFloat() * 0.6F + 0.2F;
         particleMaxAge = (int) (16.0D / (Math.random() * 0.8D + 0.2D));
     }
 

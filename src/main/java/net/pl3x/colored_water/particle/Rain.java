@@ -1,28 +1,20 @@
 package net.pl3x.colored_water.particle;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.IParticleFactory;
 import net.minecraft.client.particle.Particle;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.entity.Entity;
-import net.minecraft.item.EnumDyeColor;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.IFluidBlock;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.pl3x.colored_water.block.BlockWater;
 
 import javax.annotation.Nonnull;
 
-public class Rain extends Particle {
-    private final int fxLayer;
-
+public class Rain extends WaterParticle {
     public Rain(World world, double x, double y, double z) {
         super(world, x, y, z, 0, 0, 0);
         motionX *= 0.30000001192092896D;
@@ -33,34 +25,17 @@ public class Rain extends Particle {
         particleGreen = 1.0F;
         particleBlue = 1.0F;
 
-        IBlockState state = world.getBlockState(new BlockPos(x, y, z).down());
-        Block block = state.getBlock();
-        if (block instanceof BlockWater) {
-            fxLayer = 1;
-            EnumDyeColor color = ((BlockWater) block).dyeColor;
+        if (color != null) {
             particleTextureIndexX = (color.getMetadata() % 2 * 4) + rand.nextInt(4);
             particleTextureIndexY = color.getMetadata() / 2;
         } else {
-            fxLayer = 0;
-            setParticleTextureIndex(19 + rand.nextInt(4));
-            setSize(0.01F, 0.01F);
+            particleTextureIndexX = 4 + rand.nextInt(4);
+            particleTextureIndexY = 9;
         }
 
+        setSize(0.01F, 0.01F);
         particleGravity = 0.06F;
         particleMaxAge = (int) (8.0D / (Math.random() * 0.8D + 0.2D));
-    }
-
-    @Override
-    public int getFXLayer() {
-        return fxLayer;
-    }
-
-    @Override
-    public void renderParticle(BufferBuilder buffer, Entity entity, float partialTicks, float x, float z, float yz, float xy, float xz) {
-        if (fxLayer != 0) {
-            Minecraft.getMinecraft().getTextureManager().bindTexture(ModParticles.PARTICLES_TEXTURE);
-        }
-        super.renderParticle(buffer, entity, partialTicks, x, z, yz, xy, xz);
     }
 
     public void onUpdate() {
@@ -86,7 +61,7 @@ public class Rain extends Particle {
             motionZ *= 0.699999988079071D;
         }
 
-        BlockPos pos = new BlockPos(posX, posY, posZ);
+        BlockPos pos = getPos();
         IBlockState state = world.getBlockState(pos);
         Material material = state.getMaterial();
 
