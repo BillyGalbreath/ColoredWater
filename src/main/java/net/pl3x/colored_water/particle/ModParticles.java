@@ -15,5 +15,6 @@ public class ModParticles {
         Minecraft.getMinecraft().effectRenderer.registerParticle(EnumParticleTypes.WATER_BUBBLE.getParticleID(), new WaterBubble.Factory());
         Minecraft.getMinecraft().effectRenderer.registerParticle(EnumParticleTypes.WATER_SPLASH.getParticleID(), new Splash.Factory());
         Minecraft.getMinecraft().effectRenderer.registerParticle(EnumParticleTypes.WATER_DROP.getParticleID(), new Rain.Factory());
+        Minecraft.getMinecraft().effectRenderer.registerParticle(EnumParticleTypes.WATER_WAKE.getParticleID(), new WaterWake.Factory());
     }
 }
