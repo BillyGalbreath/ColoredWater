@@ -7,7 +7,8 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.pl3x.colored_water.proxy.ServerProxy;
 
-@Mod(modid = ColoredWater.modId, name = ColoredWater.name, version = ColoredWater.version)
+@Mod(modid = ColoredWater.modId, name = ColoredWater.name, version = ColoredWater.version,
+        updateJSON = "http://pl3x.net/versions/colored_water.json")
 public class ColoredWater {
     public static final String modId = "colored_water";
     public static final String name = "ColoredWater";

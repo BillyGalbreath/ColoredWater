@@ -1,9 +1,12 @@
 [{
   "modid": "colored_water",
-  "name": "ColoredWater",
-  "description": "Water, but colored. Oh my!",
+  "name": "ColorfulWater",
+  "description": "§a§o§lW§b§o§la§c§o§lt§d§o§le§e§o§lr§6§o§l, §5§o§lb§4§o§lu§3§o§lt §2§o§lc§1§o§lo§f§o§ll§a§o§lo§b§o§lr§c§o§le§d§o§ld§e§o§l. §9§o§lO§6§o§lh §5§o§lm§2§o§ly§3§o§l!",
   "version": "${version}",
   "mcversion": "${mcversion}",
-  "authorList": ["BillyGalbreath"],
-  "logoFile": "assets/logo.png"
+  "authorList": ["§6BillyGalbreath"],
+  "credits": "§7Special thanks to:\n   §3LoveFireAmi §8(§7french translation§8)",
+  "logoFile": "assets/logo.png",
+  "url": "http://pl3x.net/colored_water",
+  "updateJSON": "http://pl3x.net/versions/colored_water.json"
 }]
