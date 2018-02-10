@@ -11,7 +11,7 @@ import net.pl3x.colored_water.proxy.ServerProxy;
         updateJSON = "http://pl3x.net/versions/colored_water.json")
 public class ColoredWater {
     public static final String modId = "colored_water";
-    public static final String name = "ColoredWater";
+    public static final String name = "ColorfulWater";
     public static final String version = "@DEV_BUILD@";
 
     static {
