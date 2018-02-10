@@ -39,16 +39,9 @@ public class ClientProxy extends ServerProxy {
         if (event.getBlockForOverlay().getBlock() != Blocks.WATER) {
             return;
         }
-        Block blockFeet = event.getPlayer().world.getBlockState(event.getBlockPos()).getBlock();
         Block blockHead = event.getPlayer().world.getBlockState(event.getBlockPos().up()).getBlock();
-        if (!(blockFeet instanceof BlockWater) && !(blockHead instanceof BlockWater)) {
-            return; // not in water
-        }
         event.setCanceled(true);
-        if (blockHead instanceof BlockWater) {
-            Overlay.renderWaterOverlayTexture(((BlockWater) blockHead).dyeColor);
-        }
-        Overlay.renderWaterOverlayTexture(null);
+        Overlay.renderWaterOverlayTexture(blockHead instanceof BlockWater ? ((BlockWater) blockHead).dyeColor : null);
     }
 
     public void drawParticle(Particle particle) {

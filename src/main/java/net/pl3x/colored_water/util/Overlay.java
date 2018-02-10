@@ -48,21 +48,21 @@ public class Overlay {
         mc.getTextureManager().bindTexture(texture);
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder bufferbuilder = tessellator.getBuffer();
-        float f = mc.player.getBrightness();
-        GlStateManager.color(f, f, f, 0.25F);
+        float brightness = mc.player.getBrightness();
+        GlStateManager.color(brightness, brightness, brightness, 0.5F);
         GlStateManager.enableBlend();
         GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA,
                 GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA,
                 GlStateManager.SourceFactor.ONE,
                 GlStateManager.DestFactor.ZERO);
         GlStateManager.pushMatrix();
-        float f7 = -mc.player.rotationYaw / 64.0F;
-        float f8 = mc.player.rotationPitch / 64.0F;
+        float yaw = -mc.player.rotationYaw / 64.0F;
+        float pitch = mc.player.rotationPitch / 64.0F;
         bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
-        bufferbuilder.pos(-1.0D, -1.0D, -0.5D).tex((double) (4.0F + f7), (double) (4.0F + f8)).endVertex();
-        bufferbuilder.pos(1.0D, -1.0D, -0.5D).tex((double) (0.0F + f7), (double) (4.0F + f8)).endVertex();
-        bufferbuilder.pos(1.0D, 1.0D, -0.5D).tex((double) (0.0F + f7), (double) (0.0F + f8)).endVertex();
-        bufferbuilder.pos(-1.0D, 1.0D, -0.5D).tex((double) (4.0F + f7), (double) (0.0F + f8)).endVertex();
+        bufferbuilder.pos(-1.0D, -1.0D, -0.5D).tex((double) (4.0F + yaw), (double) (4.0F + pitch)).endVertex();
+        bufferbuilder.pos(1.0D, -1.0D, -0.5D).tex((double) (0.0F + yaw), (double) (4.0F + pitch)).endVertex();
+        bufferbuilder.pos(1.0D, 1.0D, -0.5D).tex((double) (0.0F + yaw), (double) (0.0F + pitch)).endVertex();
+        bufferbuilder.pos(-1.0D, 1.0D, -0.5D).tex((double) (4.0F + yaw), (double) (0.0F + pitch)).endVertex();
         tessellator.draw();
         GlStateManager.popMatrix();
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
