@@ -10,7 +10,7 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle.forge'
 
 def mcVersion = "1.12.2"
-def forgeVersion = "14.23.1.2555"
+def forgeVersion = "14.23.2.2611"
 def mappingsVersion = "20171003"
 def build = System.getenv()['BUILD_NUMBER'] ?: "SNAPSHOT"
 version = mcVersion + "-b" + build
