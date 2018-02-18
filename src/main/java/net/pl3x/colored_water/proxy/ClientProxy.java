@@ -1,8 +1,6 @@
 package net.pl3x.colored_water.proxy;
 
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.particle.Particle;
 import net.minecraft.init.Blocks;
 import net.minecraftforge.client.event.RenderBlockOverlayEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -42,11 +40,5 @@ public class ClientProxy extends ServerProxy {
         Block blockHead = event.getPlayer().world.getBlockState(event.getBlockPos().up()).getBlock();
         event.setCanceled(true);
         Overlay.renderWaterOverlayTexture(blockHead instanceof BlockWater ? ((BlockWater) blockHead).dyeColor : null);
-    }
-
-    public void drawParticle(Particle particle) {
-        if (particle != null) {
-            Minecraft.getMinecraft().effectRenderer.addEffect(particle);
-        }
     }
 }

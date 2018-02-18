@@ -1,7 +1,6 @@
 package net.pl3x.colored_water.proxy;
 
 import net.minecraft.block.Block;
-import net.minecraft.client.particle.Particle;
 import net.minecraft.init.Blocks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.world.BlockEvent;
@@ -21,9 +20,6 @@ public class ServerProxy {
 
     public void init(FMLInitializationEvent event) {
         MinecraftForge.EVENT_BUS.register(this);
-    }
-
-    public void drawParticle(Particle particle) {
     }
 
     @SubscribeEvent
